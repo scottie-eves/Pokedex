@@ -1,4 +1,4 @@
-alert('Hello World');
+alert('Hello Climbers');
 
-let favoriteFood = 'Thai';
-document.write(favoriteFood);
+let favoriteClimb = 'Wills A Fire';
+document.write(favoriteClimb);
