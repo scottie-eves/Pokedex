@@ -5,4 +5,4 @@ This app is simple and complex by using an external API to retrieve the data and
 
 This app was created using HTML, CSS, Javascript, Bootstrap and JQuery.
 
-To view the Pokedex the external link is: https://github.com/scottie-eves/Pokedex
+To view the Pokedex the external link is: https://scottie-eves.github.io/Pokedex/
