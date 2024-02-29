@@ -9,6 +9,11 @@ let pokemonRepository = (function() {
     function add(pokemon) {
       pokemonList.push(pokemon);
     }
+
+    function removeList() {
+      let pokemonList = document.querySelector(".pokemon-list");
+      pokemonList.innerHTML = "";
+    }
   
     // To add, append elements (li & button) and event listener.
     function addListItem(pokemon) {
@@ -101,8 +106,8 @@ let pokemonRepository = (function() {
       let heightElement = document.createElement("p");
       heightElement.innerHTML = "Height: " + pokemon.height;
   
-      let weigthElement = document.createElement("p");
-      weigthElement.innerHTML = "Weigth: " + pokemon.weight;
+      let weightElement = document.createElement("p");
+      weightElement.innerHTML = "Weight: " + pokemon.weight;
   
       let abilities = document.createElement("p");
       let abilitiesList = [pokemon.abilities[0].ability.name];
@@ -117,7 +122,7 @@ let pokemonRepository = (function() {
       modalBody.appendChild(imageBack);
       modalBody.appendChild(typesElement);
       modalBody.appendChild(heightElement);
-      modalBody.appendChild(weigthElement);
+      modalBody.appendChild(weightElement);
       modalBody.appendChild(abilities);
     }
   
@@ -126,13 +131,26 @@ let pokemonRepository = (function() {
       add: add,
       addListItem: addListItem,
       loadList: loadList,
-      loadDetails: loadDetails
+      loadDetails: loadDetails,
+      removeList: removeList
     };
   })();
   
   
   pokemonRepository.loadList().then(function() {
     pokemonRepository.getAll().forEach(function(pokemon) {
+      pokemonRepository.addListItem(pokemon)
+    });
+  })
+
+  document.querySelector("#search").addEventListener("input", (event) => {
+    const term = event.target.value;
+
+    pokemonRepository.removeList();
+
+    pokemonRepository.getAll()
+    .filter((pokemon) => pokemon.name.includes(term))
+    .forEach(function(pokemon) {
       pokemonRepository.addListItem(pokemon)
     });
   })
